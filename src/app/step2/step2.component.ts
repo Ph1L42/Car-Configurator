@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {ConfiguratorService} from '../configurator.service';
 
 @Component({
   selector: 'app-step2',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './step2.component.scss'
 })
 export class Step2Component {
+
+  service = inject(ConfiguratorService);
 
 }
