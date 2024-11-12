@@ -1,5 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, model} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ConfiguratorService} from "../configurator.service";
 
 @Component({
   selector: 'app-step1',
@@ -12,4 +13,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 })
 export class Step1Component {
 
+  service = inject(ConfiguratorService)
+
+  protected readonly model = model;
 }
