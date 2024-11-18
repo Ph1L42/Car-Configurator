@@ -1,52 +1,56 @@
 <h1>Step 3: Summary</h1>
-<h3>Your Tesla Cybertruck</h3>
+<h3>Your Tesla {{ service.currentCar()?.description }}</h3>
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
-      <div><b>Dual Motor All-Wheel Drive</b></div>
+      <div><b>{{ service.currentConfig()?.description }}</b></div>
       <div>
-        Range: 340 miles - Max speed: 112
+        Range: {{ service.currentConfig()?.range }} miles - Max speed: {{ service.currentConfig()?.speed }}
       </div>
     </div>
     <div class="col-sm-6">
-      $79,990.00
+      {{ service.currentConfig()?.price | currency }}
     </div>
   </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <b>Satin White Color</b>
-      </div>
-      <div class="col-sm-6">
-        $6,500.00
-      </div>
-    </div>
 
   <div class="row">
     <div class="col-sm-6">
-           <b>Yoke Steering Wheel</b>
+      <b>{{ service.currentColor()?.description }}</b>
     </div>
     <div class="col-sm-6">
-      $1,000.00
+      {{ service.currentColor()?.price | currency }}
     </div>
   </div>
 
+  @if(service.currentWheelIsYoke()){
     <div class="row">
       <div class="col-sm-6">
-          <b>Tow Hitch Package</b>
+        <b>Yoke Steering Wheel</b>
       </div>
       <div class="col-sm-6">
         $1,000.00
       </div>
     </div>
+  }
+
+  @if(service.currentTowHitchIsSelected()){
+    <div class="row">
+      <div class="col-sm-6">
+        <b>Tow Hitch Package</b>
+      </div>
+      <div class="col-sm-6">
+        $1,000.00
+      </div>
+    </div>
+  }
   <hr/>
 
   <div class="row">
     <div class="col-sm-6">
-        <b>TOTAL COST</b>
+      <b>TOTAL COST</b>
     </div>
     <div class="col-sm-6">
-      $88,490.00
+      {{ service.totalPrice() | currency }}
     </div>
   </div>
   <hr/>

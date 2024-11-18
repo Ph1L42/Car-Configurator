@@ -40,7 +40,16 @@ export class ConfiguratorService {
   *
   * */
   readonly step2Ready:
-    Signal<boolean> = computed(() => this.currentCar() != undefined && this.currentColor() != undefined);
+    Signal<boolean> = computed(
+    () => this.currentCar() != undefined && this.currentColor() != undefined);
+
+  readonly step3Ready:
+    Signal<boolean> = computed(
+    () =>
+      this.currentCar() != undefined &&
+      this.currentColor() != undefined &&
+      this.currentConfig() != undefined
+  );
 
   //Returns all Options of a car
   constructor() {
@@ -76,4 +85,20 @@ export class ConfiguratorService {
     const config = this.selectableOptions()?.configs.find(config => config.id === +id);
     this.currentConfig.set(config);
   }
+
+  //Total
+  totalPrice(): number  {
+    let sum: number = 0;
+    sum += this.currentConfig()!.price;
+    sum += this.currentColor()!.price;
+
+    if (this.currentTowHitchIsSelected()) {
+      sum += 1000;
+    }
+    if (this.currentWheelIsYoke()) {
+      sum += 1000;
+    }
+    return sum;
+  }
+
 }
